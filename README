@@ -1,0 +1,13 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1356
+
+Makes <C-H> in insert mode delete one subword from a camel case word or one _ delimited subword before the cursor.
+
+For example, the following word is typed in an editor:
+
+one_twoThree
+
+First <C-H> will delete "Three", second - "two" and the third will completely erase the word.
+
+Default mapping could be changed by setting g:EraseSubword_insertMap to the desired key.  Setting s:EraseSubword_insertMap to an empty string would remove default mapping at all.  Mapping could be changed later (for example in file type plugin or in some auto commands) using EraseSubword_setInsertMap function that takes one argument - new value for the g:EraseSubword_insertMap.  Empty value would disable plugin and any other value would add new mapping (old mapping would be removed).
+
+There is also a possibility to use buffer local mapping.  Than you probably want to set g:EraseSubword_insertMap to an empty string (so that there would be no global mapping) and then use EraseSubword_setlocalInsertMap in FileType auto command or BufNew, BufCreate and a like to set buffer local mapping.  EraseSubword_setlocalInsertMap uses same syntax as EraseSubword_insertMap - one argument that is a desired mapping or empty string to remove existing mapping.
